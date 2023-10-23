@@ -1,14 +1,17 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
+var saveButton = $('.btn saveBtn col-2 col-md-1');
 var today = dayjs();
 $('#currentTime').text(today.format('h:mm:ss A' ));
 $('#currentDay').text(today.format('MMM D, YYYY'));
 
-function saveButton(event) {
+function clickToSave(event) {
     event.preventDefault();
     document.getElementsByClassName('fas fa-save');
 }
+
+saveButton.on('click', clickToSave);
 
 $(function () {
     document.getElementById('hour-9') = ;
