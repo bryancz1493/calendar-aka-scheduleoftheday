@@ -18,12 +18,10 @@ $(function () {
         // Something is wrong with clickToSave function (color seems wrong)
         function clickToSave(event) {
             event.preventDefault();
-            var saveButton = document.getElementsByClassName('fas fa-save');
-            var inputInTextArea = document.getElementsByClassName(".col-8 col-md-10 description").value;
+            var inputInTextArea = document.getElementsByClassName(".description").value;
             saveButton.addEventListener('save', clickToSave);
-    
-            localStorage.getItem(hour);
-            localStorage.setItem(hour, usersInput);
+            
+            localStorage.setItem(hour, inputInTextArea);
         }
         
         // Declare work time (9am-5pm)
@@ -51,7 +49,8 @@ $(function () {
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
-    function usersInput() {
-        var input = document.getElementsByClassName('.description').value;
-    }
+        var inputToSave = localStorage.getItem(hour);
+        if (inputToSave) {
+            timeBlock.find('.description').value(inputToSave);
+        }
 });
