@@ -15,15 +15,15 @@ $(function () {
         // function? How can DOM traversal be used to get the "hour-x" id of the
         // time-block containing the button that was clicked? How might the id be
         // useful when saving the description in local storage?
-        //
-        function clickToSave(hour) {
-            hour.preventDefault();
+        // Something is wrong with clickToSave function (color seems wrong)
+        function clickToSave(event) {
+            event.preventDefault();
             var saveButton = document.getElementsByClassName('fas fa-save');
             var inputInTextArea = document.getElementsByClassName(".col-8 col-md-10 description").value;
             saveButton.addEventListener('save', clickToSave);
     
-            localStorage.getItem(hour, usersInput);
-            localStorage.setItem(hour, clickToSave);
+            localStorage.getItem(hour);
+            localStorage.setItem(hour, usersInput);
         }
         
         // Declare work time (9am-5pm)
@@ -35,23 +35,23 @@ $(function () {
         //
         for (let hour = 9; hour <= 17; hour++) {
         var workTime = dayjs().hour();
-        var timeBlock = document.getElementById('#hour-9, #hour-10, #hour-11, #hour-12, #hour-13, #hour-14, #hour-15, #hour-16, #hour-17');
+        var timeBlock = document.getElementById['#hour-9, #hour-10, #hour-11, #hour-12, #hour-13, #hour-14, #hour-15, #hour-16, #hour-17'];
         
-        if (hour < workTime) {
-            timeBlock.display('past');
-        } else if (hour === workTime) {
-            timeBlock.display('present');
-        } else {
-            timeBlock.display('future');
+            if (hour < workTime) {
+            // jQuery cannot define .addClass (show undefined)
+            timeBlock.addClass('past');
+            } else if (hour === workTime) {
+            timeBlock.addClass('present');
+            } else {
+            timeBlock.addClass('future');
+            }   
         }
-    }
     
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
     //
     function usersInput() {
-        var input = document.createElement('textAreaForUsers').value;
-    
+        var input = document.getElementsByClassName('.description').value;
     }
 });
