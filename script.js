@@ -21,13 +21,15 @@ $(function () {
         var context = $(this);
         console.log('context', context.prev().prev().text());
         var hour = context.prev().prev().text();
-        
+
         var inputInTextArea = context.prev().val();
         localStorage.setItem(hour, inputInTextArea);
     }
+    
     for (let index = 0; index < saveButtons.length; index++) {
         var saveButton = saveButtons[index];
         saveButton.addEventListener('click', clickToSave);
+        // console.log(saveButton);
     }
 
     // Declare work time (9am-5pm)
@@ -38,19 +40,20 @@ $(function () {
     // current hour in 24-hour time?
     // To show current time (eg: 9AM)
     var currentTime = dayjs().hour();
-    var timeBlocks = document.getElementsByClassName('time-block');
-
+    var timeBlocks = document.getElementsByClassName('time-block')
     // TODO: Add code to get any user input that was saved in localStorage and set
     // the values of the corresponding textarea elements. HINT: How can the id
     // attribute of each time-block be used to do this?
+
     for (let index = 0; index < timeBlocks.length; index++) {
         var timeBlock = timeBlocks[index];
         var timeBlockValue = timeBlock.querySelector('div.col-2').innerHTML;
         var timeBlockId = dayjs(timeBlockValue, 'HA');
         var timeBlockHour = timeBlockId.hour();
+        // console.log(timeBlockHour);
         var textArea = $(timeBlock).children()[1];
         var notes = localStorage.getItem(timeBlockValue);
-        console.log(textArea);
+        // console.log(textArea);
         textArea.innerText = notes;
         if (timeBlockHour < currentTime) {
             $(timeBlock).addClass('past');
